@@ -1,0 +1,48 @@
+html {
+  background-color: black;
+  color: aqua;
+}
+#title {
+  font-style: italic;
+  color: rebeccapurple;
+  background-color: rgb(149, 149, 204);
+  border-style: solid;
+  border-color: beige;
+  border-radius: 12pt;
+  text-align: center;
+}
+
+.authorName {
+  font-variant: small-caps;
+}
+
+#vestibulum {
+  color: brown;
+}
+
+.delete {
+  background-color: crimson;
+  border-style: solid;
+  border-color: blue;
+  border-radius: 3pt;
+}
+
+table,
+td,
+th {
+  color: rebeccapurple;
+  border-style: solid;
+  border-color: deepskyblue;
+  background-color: white;
+}
+
+.add {
+  background-color: chartreuse;
+  border-style: solid;
+  border-radius: 5pt;
+}
+
+.button {
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+}
