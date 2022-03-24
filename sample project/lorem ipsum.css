@@ -1,7 +1,21 @@
+/* TAG STYLES */
 html {
   background-color: black;
   color: aqua;
 }
+table,
+td,
+th {
+  color: rebeccapurple;
+  border-style: solid;
+  border-color: deepskyblue;
+  background-color: white;
+}
+footer {
+  text-align: right;
+}
+
+/* ID STYLES */
 #title {
   font-style: italic;
   color: rebeccapurple;
@@ -11,13 +25,14 @@ html {
   border-radius: 12pt;
   text-align: center;
 }
+#vestibulum {
+  color: brown;
+}
+
+/* CLASS STYLES */
 
 .authorName {
   font-variant: small-caps;
-}
-
-#vestibulum {
-  color: brown;
 }
 
 .delete {
@@ -25,15 +40,6 @@ html {
   border-style: solid;
   border-color: blue;
   border-radius: 3pt;
-}
-
-table,
-td,
-th {
-  color: rebeccapurple;
-  border-style: solid;
-  border-color: deepskyblue;
-  background-color: white;
 }
 
 .add {
@@ -45,4 +51,8 @@ th {
 .button {
   padding-left: 0.3em;
   padding-right: 0.3em;
+}
+
+.color:hover {
+  text-decoration: underline;
 }

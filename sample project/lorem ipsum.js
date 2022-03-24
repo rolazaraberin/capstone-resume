@@ -40,46 +40,40 @@
 
 //ATTACHING EVENT LISTENERS TO ELEMENTS
 {
+  //FORMAT OF EVENT LISTENERS
   var elementObject = document.querySelector("p");
   var eventString = "mouseover";
-
-  //FORMAT OF EVENT LISTENERS
   elementObject.addEventListener(eventString, callbackFunction);
 
   function callbackFunction(eventObject) {
-    console.log(eventObject);
-    //NOTE: use comma (instead of +) in consoleLog to show object properties
-  }
-
-  //Event bubbling - events are sent to parent if child didn't catch
-  var unorderedList = document.querySelector("ul");
-  unorderedList.addEventListener("click", logListClick);
-  function logListClick(event) {
-    let element = event.target;
-    let elementText = element.innerText;
-    console.log("clicked on " + elementText);
+    //Insert code here
+    let target = eventObject.target;
   }
 }
 
 //CHANGE HTML ELEMENTS
 {
   var title = document.querySelector("#title");
-  title.addEventListener("dblclick", changeTheTitle);
+  title.addEventListener("mouseover", changeTheTitle);
   function changeTheTitle() {
     title.innerHTML = "What happened to the title?";
   }
 
   var author = document.querySelector(".author");
-  author.addEventListener("dblclick", removeFormatting);
-  function removeFormatting() {
-    author.innerHTML = author.innerText;
-    //NOTE: innerText omits inner HTML tags
+  author.addEventListener("mouseover", removeFormatting);
+  function removeFormatting(event) {
+    let target = event.target;
+    if (target.className == "authorName") {
+      author.innerHTML = author.innerText;
+      //NOTE: innerText omits inner HTML tags
+    }
   }
 
   var paragraphs = document.getElementsByTagName("p");
-  paragraphs[1].addEventListener("mouseleave", shrinkTheParagraph);
+  var secondParagraph = paragraphs[1];
+  secondParagraph.addEventListener("mouseleave", shrinkTheParagraph);
   function shrinkTheParagraph() {
-    paragraphs[1].outerHTML = `<h6>${paragraphs[1].innerHTML}</h6>`;
+    secondParagraph.outerHTML = `<h6>${secondParagraph.innerHTML}</h6>`;
   }
 }
 
@@ -121,30 +115,47 @@
 }
 //ADD OR CHANGE ELEMENT ATTRIBUTES
 {
-  var bodyTag = document.querySelector("body");
-  bodyTag.addEventListener("contextmenu", onRightClick);
-  function onRightClick() {
-    var buttons = document.querySelectorAll(".delete, .add");
-    for (eachButton of buttons) {
-      eachButton.className += " button";
-      eachButton.classList.add("functional");
-      eachButton.setAttribute("isModified", "true");
-      //NOTE: View the changes in browser DevTools HTML tab
+  var buttons = document.querySelectorAll(".delete, .add");
+  for (eachButton of buttons) {
+    eachButton.addEventListener("mouseover", addClassButton);
+    //NOTE: View the changes in browser DevTools HTML tab
+  }
+  function addClassButton(event) {
+    //NOTE: The "button" class adds padding to the sides of each button.
+    let target = event.target;
+    target.className += " button";
+    target.classList.add("functional");
+    target.setAttribute("isModified", "true");
+    //The above code shows different ways to modify attributes
+  }
+
+  //Event bubbling - events are sent to parent if child didn't catch
+  var unorderedList = document.querySelector("ul");
+  unorderedList.addEventListener("click", logListClick);
+  function logListClick(event) {
+    let element = event.target;
+    if (element.className == "color") {
+      let color = element.innerText;
+      let li = element.parentElement;
+      li.setAttribute("style", "color:" + color);
+      //NOTE: use comma (instead of +) in "console.log()" to show object properties
     }
   }
 }
 //REMOVE ATTRIBUTE
 {
+  //NOTE: Use devtools to watch the the attribute get removed
   var footerTag = document.querySelector("footer");
-  footerTag.addEventListener("click", removeAttribute);
-  function removeAttribute() {
+  footerTag.addEventListener("mouseover", removeUnnecessaryAttribute);
+  function removeUnnecessaryAttribute() {
     footerTag.removeAttribute("class");
+    console.log('The "class" attribute has been removed from <footer>');
   }
 }
 //ADD OR CHANGE CSS STYLES
 {
   var table = document.querySelector("table");
-  table.addEventListener("click", changeTableStyles);
+  table.addEventListener("mouseover", changeTableStyles);
   function changeTableStyles(event) {
     tag = event.target;
     switch (tag.localName) {
