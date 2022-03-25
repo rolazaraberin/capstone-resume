@@ -101,3 +101,7 @@ a:hover {
 .align-left {
   width: 50%;
 }
+
+.margin-bottom {
+  margin-bottom: 1rem;
+}
