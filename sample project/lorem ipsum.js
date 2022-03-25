@@ -63,7 +63,7 @@
   author.addEventListener("mouseover", removeFormatting);
   function removeFormatting(event) {
     let target = event.target;
-    if (target.className == "authorName") {
+    if (target.classList.contains("authorName")) {
       author.innerHTML = author.innerText;
       //NOTE: innerText omits inner HTML tags
     }
@@ -108,10 +108,12 @@
 
 //READ ELEMENT ATTRIBUTES
 {
-  var linkTag = document.querySelector("link");
+  var elementWithAttributes = document.querySelector("link");
+  var linkTag = elementWithAttributes;
   var relAttribute = linkTag.getAttribute("rel");
   var hrefAttribute = linkTag.getAttribute("href");
   var allAttributes = linkTag.attributes;
+  //Type variable in the console to see their values
 }
 //ADD OR CHANGE ELEMENT ATTRIBUTES
 {
@@ -134,7 +136,7 @@
   unorderedList.addEventListener("click", logListClick);
   function logListClick(event) {
     let element = event.target;
-    if (element.className == "color") {
+    if (element.classList.contains("color")) {
       let color = element.innerText;
       let li = element.parentElement;
       li.setAttribute("style", "color:" + color);
@@ -145,11 +147,20 @@
 //REMOVE ATTRIBUTE
 {
   //NOTE: Use devtools to watch the the attribute get removed
-  var footerTag = document.querySelector("footer");
-  footerTag.addEventListener("mouseover", removeUnnecessaryAttribute);
+  var footer = document.getElementById("footer");
+  footer.addEventListener("mouseover", removeUnnecessaryAttribute);
+  var isAttributeRemoved = false;
   function removeUnnecessaryAttribute() {
-    footerTag.removeAttribute("class");
-    console.log('The "class" attribute has been removed from <footer>');
+    if (isAttributeRemoved) {
+      console.log("Peek-a-boo!!!");
+    } else {
+      let unnecessaryAttribute = "class";
+      let footerTag = document.querySelector("footer");
+      footerTag.removeAttribute(unnecessaryAttribute);
+      console.log('The "class" attribute has been removed from <footer>');
+      footer.innerHTML = "There's a message in the console";
+      isAttributeRemoved = true;
+    }
   }
 }
 //ADD OR CHANGE CSS STYLES
@@ -167,7 +178,9 @@
         break;
       case "td":
         var styleSheet = document.styleSheets[0];
-        styleSheet.insertRule("td {font-style:italic;font-weight:bold}");
+        styleSheet.insertRule(
+          "td {font-style:italic;font-weight:bold;text-align:center}"
+        );
         //NOTE: insertRule doesn't work if the HTML file is opened in the browser.
         //NOTE: insertRule works when running the HTML file in a server.
         //NOTE: These changes are viewable in DevTools STYLES tab
