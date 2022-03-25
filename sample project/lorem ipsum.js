@@ -101,7 +101,7 @@
     trTag.appendChild(tdTag);
     tdTag.innerHTML = Math.round(Math.random() * 100);
 
-    table = document.querySelector("table");
+    table = document.querySelector("tbody");
     table.appendChild(trTag);
   }
 }
